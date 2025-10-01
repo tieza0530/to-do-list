@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto } from 'next/font/google'
 import "./globals.css";
 import Header from "./components/Header";
+import { SidebarProvider } from "@/components/ui/sidebar"
+import { AppSidebar } from "./components/Sidebar";
 
 export const metadata: Metadata = {
   title: "To Do List",
@@ -22,12 +24,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={roboto.className}>
       <body >
-        <div className="bg-neutral-100">
-          <div className="flex flex-col justify-around h-screen">
-            <Header />
-              {children} 
+        <SidebarProvider>
+          <div className="bg-neutral-100">
+            <div className="flex flex-col justify-around h-screen">
+              <div >
+                <Header />
+              </div>
+              <AppSidebar />
+              {children}
+            </div>
           </div>
-        </div>
+        </SidebarProvider>
       </body>
     </html>
   );
